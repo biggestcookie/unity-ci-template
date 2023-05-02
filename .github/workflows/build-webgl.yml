@@ -33,8 +33,9 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-        with: 
+        with:
           path: build/WebGL/WebGL
+          retention-days: 1
   publish:
     name: Publish project to GitHub Pages
     runs-on: ubuntu-latest

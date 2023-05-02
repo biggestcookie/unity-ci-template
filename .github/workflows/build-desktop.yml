@@ -1,4 +1,4 @@
-name: Windows and MacOS - Build
+name: Desktop - Build
 
 on:
   workflow_dispatch:
@@ -6,6 +6,9 @@ on:
   #   branches:
   #     - main
   # Uncomment above to auto-build and release on pushes to main
+
+env:
+  PROJECT_NAME: unity-ci # Change this
 
 jobs:
   build-for-desktop:
@@ -34,15 +37,15 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-          buildName: Fruit66
+          buildName: ${{ env.tag }}
       - name: Zip output
         run: |
           cd ./build/${{ matrix.targetPlatform }}
-          zip -r ../../Fruit66.${{ matrix.targetPlatform }}.zip .
+          zip -r ../../${{ env.PROJECT_NAME }}.${{ matrix.targetPlatform }}.zip .
       - uses: actions/upload-artifact@v3
         with:
-          name: Fruit66.${{ matrix.targetPlatform }}.zip
-          path: Fruit66.${{ matrix.targetPlatform }}.zip
+          name: ${{ env.PROJECT_NAME }}.${{ matrix.targetPlatform }}.zip
+          path: ${{ env.PROJECT_NAME }}.${{ matrix.targetPlatform }}.zip
   create-release:
     name: Upload and create new release
     needs: build-for-desktop
@@ -65,3 +68,6 @@ jobs:
           tag_name: ${{ env.tag }}
           files: artifacts/**/*.*
           generate_release_notes: true
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: ${{ env.projectName }}*
