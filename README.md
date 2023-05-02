@@ -1,6 +1,6 @@
 # Unity Game.CI Template
 
-This repo contains a GitHub Actions folder with premade [GameCI](https://game.ci) actions for building a Unity project for Windows 64-bit, MacOS, and WebGL. In addition, the `build-desktop` workflow is configured to create a release with your build files as well as automatically delete build artifacts after the release is created (both to combat GitHub's limited free artifact storage quota -- release uploads do not count towards the quota).
+This repo contains a GitHub Actions folder with premade [GameCI](https://game.ci) actions for building a Unity project for Windows 64-bit, MacOS, and WebGL. In addition, the `build-desktop` workflow is configured to create a release with your build files as well as automatically delete build artifacts after the release is created (both to combat GitHub's limited free artifact storage quota -- release uploads do not count towards the quota), and the `build-webgl` workflow automatically pushes builds to GitHub Pages for the repo.
 
 Feel free to this GitHub template when creating your repo, or copy this repo as a `.zip` then copy the included `.github` folder to your own project.
 
